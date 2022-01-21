@@ -61,7 +61,7 @@ class Stress(TestSuite):
         client_iperf3_log = "iperfResults.log"
         server_iperf3 = server_node.tools[Iperf3]
         # 1. Start iperf3 on server node.
-        server_iperf3.run_as_server()
+        server_iperf3.run_as_server_async()
 
         # 2. Start iperf3 for 30 minutes on client node.
         client_nic_info_list = [
