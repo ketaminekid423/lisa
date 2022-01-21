@@ -91,9 +91,7 @@ class StoragePerformance(TestSuite):  # noqa
         ),
     )
     def perf_premium_datadisks_4k(self, node: Node, environment: Environment) -> None:
-        self._perf_premium_datadisks(
-            node, environment, test_case_name="perf_premium_datadisks_4k"
-        )
+        self._perf_premium_datadisks(node, environment)
 
     @TestCaseMetadata(
         description="""
@@ -113,12 +111,7 @@ class StoragePerformance(TestSuite):  # noqa
     def perf_premium_datadisks_1024k(
         self, node: Node, environment: Environment
     ) -> None:
-        self._perf_premium_datadisks(
-            node,
-            environment,
-            block_size=1024,
-            test_case_name="perf_premium_datadisks_1024k",
-        )
+        self._perf_premium_datadisks(node, environment, block_size=1024)
 
     @TestCaseMetadata(
         description="""
@@ -139,7 +132,6 @@ class StoragePerformance(TestSuite):  # noqa
         self._perf_premium_datadisks(
             node,
             environment,
-            test_case_name="perf_premium_datadisks_io",
             max_iodepth=64,
         )
 
@@ -337,7 +329,6 @@ class StoragePerformance(TestSuite):  # noqa
         self,
         node: Node,
         environment: Environment,
-        test_case_name: str,
         block_size: int = 4,
         max_iodepth: int = 256,
     ) -> None:
@@ -370,7 +361,7 @@ class StoragePerformance(TestSuite):  # noqa
             environment,
             DiskSetupType.raid0,
             DiskType.premiumssd,
-            test_case_name,
+            inspect.stack()[1][3],
             fio_messages,
             block_size,
         )
