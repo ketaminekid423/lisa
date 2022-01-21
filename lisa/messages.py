@@ -35,6 +35,16 @@ class TestRunMessage(MessageBase):
     message: str = ""
 
 
+class NetworkProtocol(str, Enum):
+    IPv4 = "IPv4"
+    IPv6 = "IPv6"
+
+
+class TransportProtocol(str, Enum):
+    Tcp = "TCP"
+    Udp = "UDP"
+
+
 @dataclass
 class PerfMessage(MessageBase):
     type: str = "Performance"
@@ -47,8 +57,8 @@ class PerfMessage(MessageBase):
     vmsize: str = ""
     kernel_version: str = ""
     lis_version: str = ""
-    ip_version: str = "IPv4"
-    protocol_type: str = "TCP"
+    ip_version: str = NetworkProtocol.IPv4
+    protocol_type: str = TransportProtocol.Tcp
     data_path: str = ""
     test_date: datetime = datetime.utcnow()
 
