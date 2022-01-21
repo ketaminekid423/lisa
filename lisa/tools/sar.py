@@ -68,9 +68,7 @@ class Sar(Tool):
         self, key_word: str = "DEV", interval: int = 1, count: int = 120
     ) -> ExecutableResult:
         process = self.get_statistics_async(key_word, interval, count)
-        timeout = count + 10
         return process.wait_result(
-            timeout,
             expected_exit_code=0,
             expected_exit_code_failure_message="fail to run sar command",
         )
